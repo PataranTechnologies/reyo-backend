@@ -13,7 +13,7 @@ const {
   ATLAS_USER,
 } = process.env;
 
-const db = process.env.MONGO_DB || "";
+const db = process.env.MONGO_DB || "Reyo_App_db";
 
 exports.mongoConnectionString = `mongodb+srv://${ATLAS_USER}:${ATLAS_PASSWORD}@cluster0.3ahhb.mongodb.net/${db}?retryWrites=true&w=majority`;
 
