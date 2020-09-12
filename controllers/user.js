@@ -14,6 +14,50 @@ module.exports = {
       .catch((err) => res.json(err));
   },
 
+  isSignedIn: expressJwt({
+    secret: process.env.JWT_SECRET,
+    algorithms: ["HS256"],
+  }),
+
+  // Load User Data in the req object
+  loadUser: (req, res, next) => {
+    if (!req.user) {
+      res.json({
+        success: false,
+        message: "User is not logged in",
+      });
+    }
+
+    UserModel.UsersLoadUserService(req.user)
+      .then((data) => {
+        req.user = data;
+        next();
+      })
+      .catch((err) => res.json(err));
+  },
+
+  loadVendor: (req, res, next) => {
+    if (!req.user) {
+      res.json({
+        success: false,
+        message: "User is not logged in",
+      });
+    }
+
+    UserModel.UsersLoadVendorService(req.user)
+      .then((data) => {
+        req.user = data;
+        next();
+      })
+      .catch((err) => res.json(err));
+  },
+
+  login: (req, res) => {
+    UserModel.UsersLoginService(req.body)
+      .then((success) => res.json(success))
+      .catch((error) => res.json(error));
+  },
+
   vendorRegister: (req, res) => {
     UserModel.UsersVendorRegisterService(req.body)
       .then((emailData) => {

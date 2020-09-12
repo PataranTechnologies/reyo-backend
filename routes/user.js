@@ -16,4 +16,5 @@ module.exports = (app) => {
     `${prefix}forgotpassword/setpassword`,
     UserControllers.forgotPassword
   );
+  app.post(`${prefix}login`, UserControllers.login);
 };

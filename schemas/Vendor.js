@@ -3,6 +3,7 @@ const { v4 } = require("uuid");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const database = require("../db");
+const { JWT_SECRET, JWT_EXPIRE } = require("../constants");
 
 const vendorSchema = new mongoose.Schema(
   {
@@ -57,6 +58,9 @@ const vendorSchema = new mongoose.Schema(
     isVerified: {
       type: Boolean,
       default: false,
+    },
+    salt: {
+      type: String,
     },
   },
   { timestamps: true }
