@@ -21,7 +21,6 @@ const storeSchema = new mongoose.Schema(
     },
     address: {
       type: String,
-      required: [true, "Please add an address"],
     },
     qrCode: {
       type: String,
@@ -71,15 +70,19 @@ const storeSchema = new mongoose.Schema(
       type: String,
     },
     openingTime: {
-      type: Date,
+      type: String,
       required: true,
     },
     closingTime: {
-      type: Date,
+      type: String,
       required: true,
     },
     reuses: {
       type: mongoose.Schema.Types.ObjectId,
+    },
+    isApproved: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
